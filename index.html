@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tastous Barber | Barber Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. BARRA DI NAVIGAZIONE -->
+    <header class="navbar">
+        <div class="logo">TASTOUS <span>BARBER</span></div>
+        <nav>
+            <a href="#servizi">Listino</a>
+            <a href="#prenota" class="btn-nav">Prenota</a>
+        </nav>
+    </header>
+
+    <!-- 2. SEZIONE PRINCIPALE -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Stile, precisione, carattere.</h1>
+            <p>Il tuo barber shop di fiducia. Scegli il servizio, seleziona l'orario libero e prenota la tua poltrona in un clic.</p>
+            <a href="#prenota" class="btn-primary">Prenota Poltrona</a>
+        </div>
+    </section>
+
+    <!-- 3. LISTINO PREZZI UOMO -->
+    <section id="servizi" class="section">
+        <h2>Listino Servizi</h2>
+        <div class="servizi-grid">
+            
+            <div class="servizio-card">
+                <h3>Taglio Uomo</h3>
+                <p>Consulenza di stile, taglio forbice/macchinetta e rifinitura precisa.</p>
+                <span class="prezzo">10€</span>
+            </div>
+
+            <div class="servizio-card">
+                <h3>Solo Barba</h3>
+                <p>Regolazione, definizione contorni e trattamento ammorbidente.</p>
+                <span class="prezzo">5€</span>
+            </div>
+
+            <div class="servizio-card">
+                <h3>Taglio + Barba</h3>
+                <p>Il pacchetto completo per un look impeccabile da testa a mento.</p>
+                <span class="prezzo">15€</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. CALENDARIO DI PRENOTAZIONE -->
+    <section id="prenota" class="section bg-dark">
+        <h2>Prenota il tuo Appuntamento</h2>
+        <p class="subtitle">Seleziona giorno e ora disponibile.</p>
+
+        <form id="booking-form" class="booking-form">
+            <label for="nome">Nome e Cognome</label>
+            <input type="text" id="nome" placeholder="Es. Marco Rossi" required>
+
+            <label for="telefono">Numero di Telefono</label>
+            <input type="tel" id="telefono" placeholder="Es. 333 1234567" required>
+
+            <label for="servizio">Scegli il Servizio</label>
+            <select id="servizio" required>
+                <option value="Taglio Uomo (10€)">Taglio Uomo - 10€</option>
+                <option value="Solo Barba (5€)">Solo Barba - 5€</option>
+                <option value="Taglio + Barba (15€)">Taglio + Barba - 15€</option>
+            </select>
+
+            <label for="data">Scegli il Giorno</label>
+            <input type="date" id="data" required>
+
+            <label>Orari Disponibili</label>
+            <!-- Qui JavaScript genererà automaticamente i pulsanti degli orari -->
+            <div id="orari-container" class="orari-grid">
+                <p class="info-text">Seleziona prima una data per vedere gli orari.</p>
+            </div>
+            <!-- Campo nascosto che memorizza l'orario cliccato -->
+            <input type="hidden" id="orario-selezionato" required>
+
+            <button type="submit" class="btn-primary">Conferma Prenotazione</button>
+            <p id="messaggio-conferma" class="feedback-msg"></p>
+        </form>
+    </section>
+
+    <!-- 5. CONTATTI E ORARI -->
+    <footer class="footer">
+        <p><strong>TASTOUS BARBER</strong></p>
+        <p>Indirizzo: Via roma 172 , Vittoria | Tel: 3391965375 </p>
+        <p>Orari: Mar - Sab | 09:00 - 13:00 / 15:00 - 19:30</p>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
+</body>
+</html>

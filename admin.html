@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Tastous Barber | Area Riservata</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 25px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            border: 1px solid #303030;
+        }
+        .login-box {
+            max-width: 400px;
+            margin: 80px auto;
+            text-align: center;
+        }
+        .filtro-data {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .controlli-filtro {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .filtro-data input[type="date"] {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #3a3a3a;
+            background-color: #121212;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+        .btn-filtro {
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid #d4af37;
+            background-color: transparent;
+            color: #d4af37;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-filtro.attivo, .btn-filtro:hover {
+            background-color: #d4af37;
+            color: #121212;
+        }
+        .data-gruppo-titolo {
+            color: #d4af37;
+            font-size: 1.05rem;
+            margin: 22px 0 10px 0;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #333;
+            text-transform: capitalize;
+        }
+        .appuntamento-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #121212;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #d4af37;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+        .app-info h3 {
+            color: #d4af37;
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+        .app-info p {
+            color: #cccccc;
+            font-size: 0.95rem;
+            margin: 2px 0;
+        }
+        .app-info a {
+            color: #4cd964;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .btn-elimina {
+            background-color: #b83232;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-elimina:hover {
+            background-color: #d93838;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">TASTOUS <span>AGENDA</span></div>
+        <nav>
+            <a href="index.html">Torna al Sito</a>
+        </nav>
+    </header>
+
+    <!-- SCHERMATA DI ACCESSO -->
+    <div id="login-section" class="admin-container login-box">
+        <h2 style="color: #d4af37; margin-bottom: 15px;">Area Barbiere</h2>
+        <p style="color: #aaa; margin-bottom: 20px;">Inserisci la password per vedere gli appuntamenti.</p>
+        <input type="password" id="admin-password" placeholder="Password" style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #3a3a3a; background: #121212; color: #fff;">
+        <button id="btn-login" class="btn-primary" style="max-width: 100%;">Entra nell'Agenda</button>
+        <p id="login-error" style="color: #ff5555; margin-top: 12px; font-weight: 600;"></p>
+    </div>
+
+    <!-- PANNELLO APPUNTAMENTI -->
+    <div id="agenda-section" class="admin-container" style="display: none;">
+        <div class="filtro-data">
+            <h2 id="titolo-agenda" style="color: #d4af37;">Prossimi Appuntamenti</h2>
+            <div class="controlli-filtro">
+                <button id="btn-tutti-prossimi" class="btn-filtro attivo">Tutti i prossimi</button>
+                <input type="date" id="filtro-data-input" title="Filtra un giorno specifico">
+            </div>
+        </div>
+
+        <div id="lista-appuntamenti">
+            <p style="color: #888;">Caricamento appuntamenti...</p>
+        </div>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>
