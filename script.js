@@ -53,18 +53,18 @@ async function mostraOrariPerData(dataScelta) {
     containerOrari.innerHTML = "";
 
     if (!dataScelta) {
-        containerOrari.innerHTML = '<p class="info-text">Seleziona prima una data per vedere gli orari.</p>';
+        containerOrari.innerHTML = '<p class="info-text">Khtar nhar loul bech tchouf l\'aw9at.</p>';
         return;
     }
 
     // Controllo chiusura domenica (0 = Domenica)
     const giornoSettimana = new Date(dataScelta).getDay();
     if (giornoSettimana === 0) {
-        containerOrari.innerHTML = '<p class="info-text">Chiuso la domenica. Scegli un altro giorno.</p>';
+        containerOrari.innerHTML = '<p class="info-text">Msakker nhar l\'7ad. Khtar nhar akher.</p>';
         return;
     }
 
-    containerOrari.innerHTML = '<p class="info-text">Controllo disponibilità...</p>';
+    containerOrari.innerHTML = '<p class="info-text">Na9raw fl disponibilité...</p>';
 
     try {
         // Chiediamo a Firestore tutte le prenotazioni per la data scelta
@@ -87,7 +87,7 @@ async function mostraOrariPerData(dataScelta) {
 
             if (orariOccupati.includes(orario)) {
                 btn.disabled = true;
-                btn.title = "Orario già prenotato";
+                btn.title = "Wa9t mekhoudh deja";
             } else {
                 btn.addEventListener("click", function() {
                     document.querySelectorAll(".slot-btn").forEach(b => b.classList.remove("selected"));
@@ -101,7 +101,7 @@ async function mostraOrariPerData(dataScelta) {
 
     } catch (errore) {
         console.error("Errore nel recupero orari:", errore);
-        containerOrari.innerHTML = '<p class="info-text" style="color:#ff5555;">Errore di connessione al database. Verifica che Firestore sia attivo.</p>';
+        containerOrari.innerHTML = '<p class="info-text" style="color:#ff5555;">Famma mochkel fl connexion mta3 l\'base de données. Thabbet eli Firestore yekhdem.</p>';
     }
 }
 
@@ -117,13 +117,13 @@ formPrenotazione.addEventListener("submit", async function(event) {
 
     if (!orario) {
         messaggioConferma.style.color = "#ff5555";
-        messaggioConferma.textContent = "Per favore, seleziona un orario disponibile!";
+        messaggioConferma.textContent = "3aychek, khtar wa9t disponible!";
         return;
     }
 
     const btnSubmit = formPrenotazione.querySelector("button[type='submit']");
     btnSubmit.disabled = true;
-    btnSubmit.textContent = "Salvataggio in corso...";
+    btnSubmit.textContent = "9aaed nssajlou...";
 
     try {
         // Salviamo il nuovo appuntamento nella raccolta "prenotazioni" su Firestore
@@ -137,7 +137,7 @@ formPrenotazione.addEventListener("submit", async function(event) {
         });
 
         messaggioConferma.style.color = "#4cd964";
-        messaggioConferma.textContent = `Prenotazione confermata per il ${data} alle ${orario}!`;
+        messaggioConferma.textContent = `Rendez-vous tconfirmé nhar ${data} m3a ${orario}!`;
 
         inputOrarioSelezionato.value = "";
         await mostraOrariPerData(data);
@@ -148,9 +148,9 @@ formPrenotazione.addEventListener("submit", async function(event) {
     } catch (errore) {
         console.error("Errore nel salvataggio:", errore);
         messaggioConferma.style.color = "#ff5555";
-        messaggioConferma.textContent = "Errore durante la prenotazione. Riprova.";
+        messaggioConferma.textContent = "Sar mochkel wa9t l'enregistrement. 3awed jarreb.";
     } finally {
         btnSubmit.disabled = false;
-        btnSubmit.textContent = "Conferma Prenotazione";
+        btnSubmit.textContent = "ken met2eked inzel linne";
     }
 });

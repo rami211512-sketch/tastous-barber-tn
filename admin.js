@@ -51,7 +51,7 @@ function verificaAccesso() {
         agendaSection.style.display = "block";
         caricaTuttiIProssimi();
     } else {
-        loginError.textContent = "Password errata. Riprova.";
+        loginError.textContent = "Mot de passe ghalet. 3awed jarreb.";
     }
 }
 
@@ -60,7 +60,7 @@ btnTuttiProssimi.addEventListener("click", function() {
     modalitaAttuale = "tutti";
     inputFiltroData.value = "";
     btnTuttiProssimi.classList.add("attivo");
-    titoloAgenda.textContent = "Prossimi Appuntamenti";
+    titoloAgenda.textContent = "Les Rendez-vous Eli Jeyin";
     caricaTuttiIProssimi();
 });
 
@@ -72,7 +72,7 @@ inputFiltroData.addEventListener("change", function() {
     }
     modalitaAttuale = "singolo";
     btnTuttiProssimi.classList.remove("attivo");
-    titoloAgenda.textContent = "Appuntamenti del Giorno";
+    titoloAgenda.textContent = "Rendez-vous mta3 n'Nhar";
     caricaAppuntamentiGiorno(inputFiltroData.value);
 });
 
@@ -90,14 +90,14 @@ function formattaDataItaliano(dataISO) {
 
 // 4. CARICA TUTTI I PROSSIMI DA OGGI IN POI
 async function caricaTuttiIProssimi() {
-    listaAppuntamenti.innerHTML = '<p style="color: #888;">Caricamento in corso...</p>';
+    listaAppuntamenti.innerHTML = '<p style="color: #888;">9aaed n7amlou...</p>';
 
     try {
         const q = query(prenotazioniRef, where("data", ">=", oggi));
         const snapshot = await getDocs(q);
 
         if (snapshot.empty) {
-            listaAppuntamenti.innerHTML = '<p style="color: #aaa; text-align: center; padding: 20px;">Nessun appuntamento futuro prenotato.</p>';
+            listaAppuntamenti.innerHTML = '<p style="color: #aaa; text-align: center; padding: 20px;">Mafamma 7atta rendez-vous jey.</p>';
             return;
         }
 
@@ -121,7 +121,7 @@ async function caricaTuttiIProssimi() {
                 dataCorrenteIntestazione = app.data;
                 const intestazione = document.createElement("h3");
                 intestazione.classList.add("data-gruppo-titolo");
-                const etichettaOggi = app.data === oggi ? " (OGGI)" : "";
+                const etichettaOggi = app.data === oggi ? " (L'YOUM)" : "";
                 intestazione.textContent = formattaDataItaliano(app.data) + etichettaOggi;
                 listaAppuntamenti.appendChild(intestazione);
             }
@@ -131,20 +131,20 @@ async function caricaTuttiIProssimi() {
 
     } catch (errore) {
         console.error("Errore nel caricamento:", errore);
-        listaAppuntamenti.innerHTML = '<p style="color: #ff5555;">Errore nel caricamento degli appuntamenti.</p>';
+        listaAppuntamenti.innerHTML = '<p style="color: #ff5555;">Sar mochkel wa9t t7mil les rendez-vous.</p>';
     }
 }
 
 // 5. CARICA UN SINGOLO GIORNO SCELTO DAL CALENDARIO
 async function caricaAppuntamentiGiorno(dataScelta) {
-    listaAppuntamenti.innerHTML = '<p style="color: #888;">Caricamento in corso...</p>';
+    listaAppuntamenti.innerHTML = '<p style="color: #888;">9aaed n7amlou...</p>';
 
     try {
         const q = query(prenotazioniRef, where("data", "==", dataScelta));
         const snapshot = await getDocs(q);
 
         if (snapshot.empty) {
-            listaAppuntamenti.innerHTML = '<p style="color: #aaa; text-align: center; padding: 20px;">Nessun appuntamento prenotato per questa data.</p>';
+            listaAppuntamenti.innerHTML = '<p style="color: #aaa; text-align: center; padding: 20px;">Mafamma 7atta rendez-vous mréservé fl nhar hadha.</p>';
             return;
         }
 
@@ -162,7 +162,7 @@ async function caricaAppuntamentiGiorno(dataScelta) {
 
     } catch (errore) {
         console.error("Errore nel caricamento agenda:", errore);
-        listaAppuntamenti.innerHTML = '<p style="color: #ff5555;">Errore nel caricamento degli appuntamenti.</p>';
+        listaAppuntamenti.innerHTML = '<p style="color: #ff5555;">Sar mochkel wa9t t7mil l\'agenda.</p>';
     }
 }
 
@@ -173,16 +173,16 @@ function creaCardAppuntamento(app) {
 
     card.innerHTML = `
         <div class="app-info">
-            <h3>Ore ${app.orario} — ${app.nome}</h3>
-            <p><strong>Servizio:</strong> ${app.servizio}</p>
-            <p><strong>Telefono:</strong> <a href="tel:${app.telefono}">${app.telefono}</a></p>
+            <h3>M3a ${app.orario} — ${app.nome}</h3>
+            <p><strong>Service:</strong> ${app.servizio}</p>
+            <p><strong>Numéro:</strong> <a href="tel:${app.telefono}">${app.telefono}</a></p>
         </div>
-        <button class="btn-elimina">Cancella</button>
+        <button class="btn-elimina">Fassekh</button>
     `;
 
     const btnElimina = card.querySelector(".btn-elimina");
     btnElimina.addEventListener("click", async function() {
-        const conferma = confirm(`Vuoi davvero cancellare l'appuntamento di ${app.nome} del ${app.data} alle ${app.orario}?`);
+        const conferma = confirm(`Met2eked t7eb tfassekh rendez-vous mta3 ${app.nome} nhar ${app.data} m3a ${app.orario}?`);
         if (conferma) {
             await deleteDoc(doc(db, "prenotazioni", app.id));
             if (modalitaAttuale === "tutti") {
